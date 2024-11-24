@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-5#lj2_sg0h4$ax&3lrbf3506b(9&@)hrb#12)q60(462*wlizz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = false
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.railway.app']
 
 
 # Application definition
@@ -76,10 +76,7 @@ WSGI_APPLICATION = "django_portfolio.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+     "default": dj_database_url.config(default=f"sqlite:///{BASE_DIR}/db.sqlite3")
 }
 
 
@@ -120,6 +117,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/public/"
 MEDIA_ROOT = BASE_DIR / "media"
 
